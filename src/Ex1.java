@@ -35,7 +35,8 @@ public class Ex1 {
         boolean b=false;
         for(int i=0;i<a.length();i++)
         {
-            if (a.charAt(i) == 'b')
+            //if (a.charAt(i) == 'b')
+            if(equals(String.valueOf(a.charAt(i)),"b"))
                 b = true;
         }
 
@@ -43,11 +44,12 @@ public class Ex1 {
             return false;
         int base=splitBase(a);
         String num= (String.valueOf(splitNum(a))) ;
-        if((String.valueOf(base)==null)|| (num==null))
+        if((base==0)|| (num=="0"))
         if( (base>16) || (base<0) )  // checks the last character
             return false;
 
-        if (a.charAt(a.length() - 2) != 'b')
+        //if (a.charAt(a.length() - 2) != 'b')
+        if( !equals( String.valueOf(a.charAt(a.length() - 2) ) ,"b")
             return false;
 
         for(int i=0;i<num.length();i++)
@@ -90,11 +92,9 @@ public class Ex1 {
      * @return true iff the two numbers have the same values.
      */
     public static boolean equals(String n1, String n2) {
-        boolean ans = true;
-        // add your code here
-
-        ////////////////////
-        return ans;
+        if (n1.equals(n2))
+            return true;
+        return false;
     }
 
     /**
@@ -118,13 +118,19 @@ public class Ex1 {
     {
 
         String[] parts = num.split("b");
-        return Integer.parseInt(parts[0]);
+       // if( (parts[0])=="");
+        if(equals(parts[0],""))
+        return 0;
+        int n=Integer.valueOf(parts[0]);
+        return n;
     }
 
     public static int splitBase(String num)
     {
         String[] parts = num.split("b");
-        return Integer.parseInt(parts[1]);
+        if(equals(parts[1],""))
+       return 0;
+       return Integer.parseInt(parts[1]);
     }
 
 
