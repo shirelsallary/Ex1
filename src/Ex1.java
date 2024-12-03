@@ -20,7 +20,6 @@ public class Ex1 {
     public static int number2Int(String num)
     {
        if(isNumber(num)==true)
-        //פונקציה שמפרידה ומחזירה מה הבסיס ומה המספר עצמו
            return (Integer.parseInt(int2Number(splitNum(num),splitBase(num))));
        return -1;
     }
@@ -29,8 +28,37 @@ public class Ex1 {
      * @param a a String representing a number
      * @return true iff the given String is in a number format
      */
-    public static boolean isNumber(String a) {
-        int
+    public static boolean isNumber(String a)
+    {
+        if(a==null)
+            return false;
+        boolean b=false;
+        for(int i=0;i<a.length();i++)
+        {
+            if (a.charAt(i) == 'b')
+                b = true;
+        }
+
+        if(b==false)
+            return false;
+        int base=splitBase(a);
+        String num= (String.valueOf(splitNum(a))) ;
+        if((String.valueOf(base)==null)|| (num==null))
+        if( (base>16) || (base<0) )  // checks the last character
+            return false;
+
+        if (a.charAt(a.length() - 2) != 'b')
+            return false;
+
+        for(int i=0;i<num.length();i++)
+        {
+            if (num.charAt(i)>base)
+                return false;
+        }
+
+        return true;
+
+
 
     }
 
@@ -88,6 +116,7 @@ public class Ex1 {
     // get a string and returns the number
     public static int splitNum(String num)
     {
+
         String[] parts = num.split("b");
         return Integer.parseInt(parts[0]);
     }
@@ -98,11 +127,7 @@ public class Ex1 {
         return Integer.parseInt(parts[1]);
     }
 
-    /* puts a string into an array
-    public static char[] stringToArray (String num)
-    {
-        return num.toCharArray();
-    }
-     */
+
+
 
 }
