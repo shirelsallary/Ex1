@@ -49,7 +49,7 @@ public class Ex1 {
             return false;
 
         //if (a.charAt(a.length() - 2) != 'b')
-        if( !equals( String.valueOf(a.charAt(a.length() - 2) ) ,"b")
+        if( !equals( String.valueOf(a.charAt(a.length() - 2) ) ,"b"))
             return false;
 
         for(int i=0;i<num.length();i++)
@@ -133,7 +133,24 @@ public class Ex1 {
        return Integer.parseInt(parts[1]);
     }
 
+//Convert a number in 10 base to chosen base
+public  static int tenBaseToNewBase(int num, int base)
+{
+    String Convert="";
+    while (num>0)
+    {
+        Convert = (String.valueOf(num%base))+Convert;
+        num=num/base;
+    }
+    return Integer.parseInt(Convert);
+}
 
+//bulding a string that represent as needed the number and it base
+    public static String BuildNum(int num,int base)
+    {
+        String s= tenBaseToNewBase(num,base)+"b"+base;
+        return s;
+    }
 
 
 }
