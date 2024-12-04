@@ -106,11 +106,13 @@ public class Ex1 {
      *
      */
     public static int maxIndex(String[] arr) {
-        int ans = 0;
-        // add your code here
-
-        ////////////////////
-        return ans;
+        int max = Integer.MIN_VALUE;
+        int L=arr.length;
+        for(int i=0;i<L;i++)
+        {
+            max=Math.max(max,arr[i].length());
+        }
+        return max;
     }
 
     // get a string and returns the number
