@@ -17,46 +17,57 @@ public class Ex1 {
      * @param num a String representing a number in basis [2,16]
      * @return
      */
-    public static int number2Int(String num)
-    {
-       if(isNumber(num)==true)                                           //if the number is in the valid format
-           return (Integer.parseInt(splitNum(num),splitBase(num)));      //return the number as his decimal representation
-       return -1;                                                        //if the number isn't in the valid format
+    public static int number2Int(String num) {
+        if(isNumber(num)==true) {
+             String[] arr=num.split("b") ;
+                if (arr.length==1)
+                    return Integer.parseInt(num);
+            return (Integer.parseInt(arr[0],Integer.parseInt(arr[1])));      //return the number as his decimal representation
+        }
+        return -1;
     }
     /**
      * This static function checks if the given String (g) is in a valid "number" format.
      * @param a a String representing a number
      * @return true iff the given String is in a number format
      */
-    public static boolean isNumber(String a)
-    {
-        if(equals(a,""))                                                  //check if not empty
-            return false;
-        if (equals(a,"1")||equals(a,"0"))                                 //check two possible ways to enter not like the format
+    public static boolean isNumber(String a) {
+        if(a==null)
+            return false;          //check if not empty
+
+        if (!a.contains("b"))   //10 base
             return true;
-
-        boolean b=false;
-        if( !equals( String.valueOf(a.charAt(a.length() - 2) ) ,"b"))     // check if it in the format
-            return false;
-        else
-            b=true;
-
-        int base=splitBase(a);
-        String num= (String.valueOf(splitNum(a))) ;
-        if((base==0)|| (num==""))                                         // check if there are values in the number & base
-            return false;
-
-        if( (base>16) || (base<2) )                                    // checks the base
-            return false;
-
-        for(int i=0;i<num.length();i++)                               //check if the number is posibble depending on the base
+        else if (a.charAt(a.length() - 2) == 'b') //if the b is in the right place
         {
-            if (num.charAt(i)>=base)                                   //if one of them is bigger/equals-not good
+           String [] nums = a.split("b");
+           if(nums.length<3)// if there are values on both sides of b
+               return false;// if not
+            if (Integer.parseInt(nums[1])<0)
                 return false;
-        }
+            if(Integer.parseInt(nums[1])<10)// if the base is number
+            {
+                int base = Integer.parseInt(nums[1]);
 
-        return true;
-    }
+                for(int i=0;i<nums[0].length();i++)      //check if the number is posibble depending on the base
+                {
+                    if (nums[0].charAt(i)>=base)        //if one of them is bigger/equals-not good
+                        return false;
+                }
+            }
+            else if (((Integer.parseInt(nums[1])-54)<17) &&((Integer.parseInt(nums[1])-54)>10))
+            {
+                int base = Integer.parseInt(nums[1])-54;
+
+                for(int i=0;i<nums[0].length();i++)      //check if the number is posibble depending on the base
+                {
+                    if (nums[0].charAt(i) >= base)        //if one of them is bigger/equals-not good
+                        return false;
+                }
+            }else
+                {return false;}
+return true;
+
+        }
 
     /**
      * Calculate the number representation (in basis base)
@@ -67,16 +78,11 @@ public class Ex1 {
      * @return a String representing a number (in base) equals to num, or an empty String (in case of wrong input).
      */
     public static String int2Number(int num, int base) {
-      if((num<0)||(base>16)||(base<2))                  //check the base and the number
-          return "";
-        String Convert="";
-        while (num>0)                                         //The loop create the num in the given base
-        {
-            Convert = (String.valueOf(num%base))+Convert;     //add the next number
-            num=num/base;
-        }
+        String ans = "";
+        // add your code here
 
-        return BuildNum(Convert,base);                          //return as: <number>b<base>
+        ////////////////////
+        return ans;
     }
 
     /**
@@ -87,7 +93,7 @@ public class Ex1 {
      */
     public static boolean equals(String n1, String n2) {
         if (n1.equals(n2))
-            return true;
+            return true;                                    //if they are equals
         return false;
     }
 
@@ -106,42 +112,14 @@ public class Ex1 {
         int n4=number2Int(arr[3]);
         int max1 = Math.max(n1,n2);
         int max2 = Math.max(n3,n4);
-        return Math.max(max1,max2);
-    }
-
-    // get a string and returns the number
-    public static String splitNum(String num)
-    {
-        String[] parts = num.split("b");
-        return parts[0];
-    }
-
-    public static int splitBase(String num)
-    {
-        String[] parts = num.split("b");
-       return Integer.parseInt(parts[1]);
+        return Math.max(max1,max2);               //return the max value out of the 4 numbers
     }
 
 
 
-//bulding a string that represent as needed the number and it base
-    public static String BuildNum(String num,int base)
-    {
-        if(base==10)
-            return String.valueOf(num);
-        String s= num+"b"+base;
-        return s;
-    }
-//multification of the two numbers
-    public static String multi(String n1,String n2,String base) {
-       String m= String.valueOf(number2Int(n1)*number2Int(n2));
-       return int2Number(Integer.parseInt(m),Integer.parseInt(base));
-    }
 
-    //Connection result of the two numbers
-    public static String add (String n1,String n2,String base) {
-        String c= String.valueOf(number2Int(n1)+number2Int(n2));
-        return int2Number(Integer.parseInt(c),Integer.parseInt(base));
-    }
+
+
 
 }
+
