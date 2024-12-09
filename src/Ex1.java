@@ -32,42 +32,42 @@ public class Ex1 {
      * @return true iff the given String is in a number format
      */
     public static boolean isNumber(String a) {
-        if(a==null)
+        if (a == null)
             return false;          //check if not empty
 
         if (!a.contains("b"))   //10 base
             return true;
         else if (a.charAt(a.length() - 2) == 'b') //if the b is in the right place
         {
-           String [] nums = a.split("b");
-           if(nums.length<3)// if there are values on both sides of b
-               return false;// if not
-            if (Integer.parseInt(nums[1])<0)
+            String[] nums = a.split("b");
+            if (nums.length < 3)// if there are values on both sides of b
+                return false;// if not
+            if (Integer.parseInt(nums[1]) < 0)
                 return false;
-            if(Integer.parseInt(nums[1])<10)// if the base is number
+            if (Integer.parseInt(nums[1]) < 10)// if the base is number
             {
                 int base = Integer.parseInt(nums[1]);
 
-                for(int i=0;i<nums[0].length();i++)      //check if the number is posibble depending on the base
-                {
-                    if (nums[0].charAt(i)>=base)        //if one of them is bigger/equals-not good
-                        return false;
-                }
-            }
-            else if (((Integer.parseInt(nums[1])-54)<17) &&((Integer.parseInt(nums[1])-54)>10))
-            {
-                int base = Integer.parseInt(nums[1])-54;
-
-                for(int i=0;i<nums[0].length();i++)      //check if the number is posibble depending on the base
+                for (int i = 0; i < nums[0].length(); i++)      //check if the number is posibble depending on the base
                 {
                     if (nums[0].charAt(i) >= base)        //if one of them is bigger/equals-not good
                         return false;
                 }
-            }else
-                {return false;}
-return true;
+            } else if (((Integer.parseInt(nums[1]) - 54) < 17) && ((Integer.parseInt(nums[1]) - 54) > 10)) {
+                int base = Integer.parseInt(nums[1]) - 54;
+
+                for (int i = 0; i < nums[0].length(); i++)      //check if the number is posibble depending on the base
+                {
+                    if (nums[0].charAt(i) >= base)        //if one of them is bigger/equals-not good
+                        return false;
+                }
+            } else {
+                return false;
+            }
+            return true;
 
         }
+    }
 
     /**
      * Calculate the number representation (in basis base)
@@ -77,13 +77,16 @@ return true;
      * @param base the basis [2,16]
      * @return a String representing a number (in base) equals to num, or an empty String (in case of wrong input).
      */
-    public static String int2Number(int num, int base) {
-        String ans = "";
-        // add your code here
-
-        ////////////////////
-        return ans;
-    }
+    public static String int2Number(int num, int base)
+        {
+            String Convert = "";
+            while (num > 0)                                         //The loop create the num in the given base
+            {
+                Convert = (String.valueOf(num % base)) + Convert;     //add the next number
+                num = num / base;
+            }
+            return Convert;
+        }
 
     /**
      * Checks if the two numbers have the same value.
