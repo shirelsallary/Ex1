@@ -96,11 +96,13 @@ public class Ex1 {
      */
     public static String int2Number(int num, int base) {
         String Convert = "";
+       if((num>=0)&&(base>=2)&&(base<=16)){
             while (num > 0)                                         //The loop create the num in the given base
             {
                 Convert = (String.valueOf(num % base)) + Convert;     //add the next number
                 num = num / base;
             }
+       }
 
         return Convert+"b"+(base);
     }
@@ -126,14 +128,16 @@ public class Ex1 {
      */
     public static int maxIndex(String[] arr) {
         int max = Integer.MIN_VALUE;
+        int maxIndex = 0;
         for (int i = 0; i < arr.length; i++) {
             if (number2Int(arr[i]) > max)
                 max = number2Int(arr[i]);
+            maxIndex = i;
         }
-        return max;
+        return maxIndex;
     }
 
-
+// check if all the chars are digits
     public static boolean checkDigit(String n) {
         for (int i = 0; i < n.length(); i++) {
             if (!Character.isDigit(n.charAt(i)))
@@ -141,7 +145,7 @@ public class Ex1 {
         }
         return true;
     }
-
+// switch specific values that ate in the valid format for numbers
     public static int numSwitch(String num) {
         int n = -1;
 
@@ -165,7 +169,7 @@ public class Ex1 {
 
         return n;
     }
-
+    // switch specific values that ate in the valid format for bases
     public static int baseSwitch(String num) {
         int n = -1;
         if (num.equals("2")) return 2;
@@ -192,13 +196,12 @@ public class Ex1 {
     //multification of the two numbers
     public static String multi(String n1, String n2, String base) {
         String m = String.valueOf(number2Int(n1) * number2Int(n2));
-        return m + "b" + base;
-    }
+        return int2Number(Integer.parseInt(m),Integer.parseInt(base))+"b"+base;    }
 
     //Connection result of the two numbers
     public static String add(String n1, String n2, String base) {
         String c = String.valueOf(number2Int(n1) + number2Int(n2));
-        return c + "b" + base;
+        return int2Number(Integer.parseInt(c),Integer.parseInt(base))+"b"+base;
     }
 }
 
