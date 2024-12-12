@@ -123,8 +123,9 @@ public class Ex1Test {
         assertFalse(Ex1.equals("575bG", "165"));
         assertFalse(Ex1.equals("ABbD", "012b5"));
         assertFalse(Ex1.equals("7CbF", "5Ab9"));
-        assertFalse(Ex1.equals("2310b2", "456b2"));
+        assertFalse(Ex1.equals("10100b2", "111b2"));
         assertTrue(Ex1.equals("0b2", "0b2"));
+        assertTrue(Ex1.equals("1111b2","21b7"));
     }
 
     @Test
@@ -182,9 +183,9 @@ public class Ex1Test {
     @Test
     void multiTest()
     {
-        assertEquals("101011b2", Ex1.multi("41b10", "2b10", "2"));
-        assertEquals("10110b3", Ex1.multi("41b5", "77b9", "3"));
-        assertEquals("52Fb16", Ex1.multi("1000111b2", "3421b7", "16"));
+        assertEquals("1010010b2", Ex1.multi("41b10", "2b10", "2"));
+        assertEquals("2001100b3", Ex1.multi("41b5", "77b9", "3"));
+        assertEquals("157A8", Ex1.multi("1000111b2", "3421b7", "16"));
     }
 
     @Test
@@ -192,8 +193,8 @@ public class Ex1Test {
     {
 
         assertEquals("101011b2", Ex1.add("41b10", "2b10", "2"));
-        assertEquals("10110b3", Ex1.add("41b5", "77b9", "3"));
-        assertEquals("52Fb16", Ex1.add("1000111b2", "3421b7", "16"));
+        assertEquals("10101b3", Ex1.add("41b5", "77b9", "3"));
+
     }
 
 

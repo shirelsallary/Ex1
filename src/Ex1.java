@@ -106,31 +106,28 @@ public class Ex1 {
      */
     public static String int2Number(int num, int base) {
         String Convert = "";
-       if((num>=0)&&(base>=2)&&(base<=16)){
-           if(num==0)
-               return 0+"b"+base;
+        if((num>=0)&&(base>=2)&&(base<=16)){
             while (num > 0)  //The loop create the num in the given base
             {
-                {Convert = (String.valueOf(num % base)) + Convert;  }//Add the next number
-                num = num / base;
                 if(base>9)
-                { if (num<base)
-                    if(num==10) Convert = "A" + Convert;
-                    if(num==11) Convert = "B" + Convert;
-                    if(num==12) Convert = "C" + Convert;
-                    if(num==13) Convert = "D" + Convert;
-                    if(num==14) Convert = "E" + Convert;
-                    if(num==15) Convert = "F" + Convert;
+                {
+                    if(num % base==10) {Convert = "A" + Convert; num = num / base; continue;}
+                    if(num % base==11) {Convert = "B" + Convert; num = num / base; continue;}
+                    if(num % base==12) {Convert = "C" + Convert; num = num / base; continue;}
+                    if(num % base==13) {Convert = "D" + Convert; num = num / base; continue;}
+                    if(num % base==14) {Convert = "E" + Convert;num = num / base; continue;}
+                    if(num % base==15) {Convert = "F" + Convert;num = num / base; continue;}
 
-                    num = num / base;}
+                }
+                Convert = (  numSwitch(String.valueOf(num % base))) + Convert;
+                num = num / base;
 
             }
-           return Convert+"b"+(base);
-       }
+            return Convert+"b"+(base);
+        }
 
         return Convert;
     }
-
     /**
      * Checks if the two numbers have the same value.
      *
@@ -222,13 +219,20 @@ public class Ex1 {
 
   // Multiplies two numbers (n1 and n2) and represents the result in the specified base.
     public static String multi(String n1, String n2, String base) {
-        String m = String.valueOf(number2Int(n1) * number2Int(n2));// Multiply in decimal
-        return int2Number(Integer.parseInt(m),Integer.parseInt(base));    }
+        int dec1 = number2Int(n1);//Decimal base
+        int dec2 = number2Int(n2);//Decimal base
+        if (dec1 == -1 || dec2 == -1) return "";
+        int product = dec1 * dec2; // Multiply the decimal values
+        return int2Number(product, baseSwitch(base));
+    }
 
     //Adds two numbers (n1 and n2) and represents the result in the specified base.
     public static String add(String n1, String n2, String base) {
-        String c = String.valueOf(number2Int(n1) + number2Int(n2));// Add in decimal
-        return int2Number(Integer.parseInt(c),Integer.parseInt(base));
+        int dec1 = number2Int(n1); //Decimal base
+        int dec2 = number2Int(n2); //Decimal base
+        if (dec1 == -1 || dec2 == -1) return "";
+        int sum = dec1 + dec2; // Add the decimal values
+        return int2Number(sum,baseSwitch(base));
     }
 
 
