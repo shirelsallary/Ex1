@@ -106,24 +106,63 @@ public class Ex1 {
      */
     public static String int2Number(int num, int base) {
         String Convert = "";
-        if((num>=0)&&(base>=2)&&(base<=16)){
-            while (num > 0)  //The loop create the num in the given base
+        if((base>=2)&&(base<=16)){
+            if((num>0))
             {
-                if(base>9)
+                while (num >= 0)  //The loop create the num in the given base
                 {
-                    if(num % base==10) {Convert = "A" + Convert; num = num / base; continue;}
-                    if(num % base==11) {Convert = "B" + Convert; num = num / base; continue;}
-                    if(num % base==12) {Convert = "C" + Convert; num = num / base; continue;}
-                    if(num % base==13) {Convert = "D" + Convert; num = num / base; continue;}
-                    if(num % base==14) {Convert = "E" + Convert;num = num / base; continue;}
-                    if(num % base==15) {Convert = "F" + Convert;num = num / base; continue;}
+                    if (base > 9)
+                    {
+                        if (num % base == 10) {
+                            Convert = "A" + Convert;
+                            num = num / base;
+                            continue;
+                        }
+                        if (num % base == 11) {
+                            Convert = "B" + Convert;
+                            num = num / base;
+                            continue;
+                        }
+                        if (num % base == 12) {
+                            Convert = "C" + Convert;
+                            num = num / base;
+                            continue;
+                        }
+                        if (num % base == 13) {
+                            Convert = "D" + Convert;
+                            num = num / base;
+                            continue;
+                        }
+                        if (num % base == 14) {
+                            Convert = "E" + Convert;
+                            num = num / base;
+                            continue;
+                        }
+                        if (num % base == 15) {
+                            Convert = "F" + Convert;
+                            num = num / base;
+                            continue;
+                        }
 
+                    }
+                    Convert = (numSwitch(String.valueOf(num % base))) + Convert;
+                    num = num / base;
                 }
-                Convert = (  numSwitch(String.valueOf(num % base))) + Convert;
-                num = num / base;
-
             }
-            return Convert+"b"+(base);
+            else Convert = "0";
+            String b2= String.valueOf(base);
+            if (base>9)
+            {
+                if(base==10) b2 = "A";
+                else if(base==11) b2 = "B";
+                else if(base==12) b2 = "C";
+                else if(base==13) b2 = "D";
+                else if(base==14) b2 = "E";
+                else if(base==15) b2 = "F";
+                else if(base==16) b2 = "G";
+            }
+
+            return Convert+"b"+b2;
         }
 
         return Convert;
@@ -217,22 +256,15 @@ public class Ex1 {
 
     }
 
-  // Multiplies two numbers (n1 and n2) and represents the result in the specified base.
+    // Multiplies two numbers (n1 and n2) and represents the result in the specified base.
     public static String multi(String n1, String n2, String base) {
-        int dec1 = number2Int(n1);//Decimal base
-        int dec2 = number2Int(n2);//Decimal base
-        if (dec1 == -1 || dec2 == -1) return "";
-        int product = dec1 * dec2; // Multiply the decimal values
-        return int2Number(product, baseSwitch(base));
-    }
+        String m = String.valueOf(number2Int(n1) * number2Int(n2));// Multiply in decimal
+        return int2Number(Integer.parseInt(m),Integer.parseInt(base));    }
 
     //Adds two numbers (n1 and n2) and represents the result in the specified base.
     public static String add(String n1, String n2, String base) {
-        int dec1 = number2Int(n1); //Decimal base
-        int dec2 = number2Int(n2); //Decimal base
-        if (dec1 == -1 || dec2 == -1) return "";
-        int sum = dec1 + dec2; // Add the decimal values
-        return int2Number(sum,baseSwitch(base));
+        String c = String.valueOf(number2Int(n1) + number2Int(n2));// Add in decimal
+        return int2Number(Integer.parseInt(c),Integer.parseInt(base));
     }
 
 

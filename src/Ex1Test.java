@@ -49,13 +49,13 @@ public class Ex1Test {
     void int2numberTest()
     {
         assertEquals("111b2", Ex1.int2Number(7, 2));
-        assertEquals("A2b16", Ex1.int2Number(162, 16));
+        assertEquals("A2bG", Ex1.int2Number(162, 16));
         assertEquals("", Ex1.int2Number(-10, 10));
         assertEquals("", Ex1.int2Number(10, 20));
         assertEquals("", Ex1.int2Number(-1, 2));
         assertEquals("", Ex1.int2Number(165, 17));
         assertEquals("10100101b2", Ex1.int2Number(165, 2));
-        assertEquals("A5b16", Ex1.int2Number(165, 16));
+        assertEquals("A5bG", Ex1.int2Number(165, 16));
         assertEquals("", Ex1.int2Number(165, 1));
         assertEquals("0b2", Ex1.int2Number(0, 2));
     }
@@ -184,8 +184,8 @@ public class Ex1Test {
     void multiTest()
     {
         assertEquals("1010010b2", Ex1.multi("41b10", "2b10", "2"));
-        assertEquals("2001100b3", Ex1.multi("41b5", "77b9", "3"));
-        assertEquals("157A8", Ex1.multi("1000111b2", "3421b7", "16"));
+        assertEquals("2000110b3", Ex1.multi("41b5", "77b9", "3"));
+        assertEquals("157E8bG", Ex1.multi("1000111b2", "3421b7", "16"));
     }
 
     @Test
@@ -194,7 +194,7 @@ public class Ex1Test {
 
         assertEquals("101011b2", Ex1.add("41b10", "2b10", "2"));
         assertEquals("10101b3", Ex1.add("41b5", "77b9", "3"));
-
+        assertEquals("51FbG", Ex1.add("1000111b2", "3421b7", "16"));
     }
 
 
