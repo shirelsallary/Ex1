@@ -55,6 +55,10 @@ public class Ex1 {
             return checkDigit(a);// Return if a is only digits
         }
         String[] nums = a.split("b");
+        if (nums.length != 2)// If there are values on both sides of b
+        {
+            return false; // If not
+        }
         if (baseSwitch(nums[1])==10)
             return true;
         if (a.charAt(a.length() - 2) == 'b') // Check if "b" is correctly positioned
@@ -62,20 +66,23 @@ public class Ex1 {
 
             if ((nums[0].isEmpty()) )// Number part must not be empty
             {return false;}
-            if (nums.length != 2)// If there are values on both sides of b
-            {
-                return false; // If not
-            }
+
 
             int base2;
             int num2;
-            if (!checkDigit(nums[1])) //If contains only digit
+            if (!checkDigit(nums[1])){ //If contains only digit
                 base2 = baseSwitch(nums[1]);
-            else
+            }
+
+            else{
                 base2 = Integer.parseInt(nums[1]);
+                if((base2>10)||(base2<2))
+                    return false;
+            }
 
             if ((base2 == -1))
                 return false; // Invalid base
+
 
             for (int i = 0; i < nums[0].length(); i++)//Check if the number is posibble depending on the base
             {
@@ -148,8 +155,10 @@ public class Ex1 {
         int maxIndex = 0;
         for (int i = 0; i < arr.length; i++) {
             if (number2Int(arr[i]) > max)//If the current value is bigger than the max
+            {
                 max = number2Int(arr[i]);//Put it as the max
-            maxIndex = i;
+                maxIndex = i;
+            }
         }
         return maxIndex;
     }
@@ -222,17 +231,7 @@ public class Ex1 {
         return int2Number(Integer.parseInt(c),Integer.parseInt(base));
     }
 
-//return the whole string only as numbers
-    public static String stringToInt(String n) {
-        String n2="";
-        for (int i = 0; i < n.length(); i++) {
-            if (number2Int(String.valueOf(n.charAt(i))) == -1)
-                return "";
-              n2=n2+ number2Int(String.valueOf(n.charAt(i)));
 
-        }
-        return n2;
-    }
 }
 
 

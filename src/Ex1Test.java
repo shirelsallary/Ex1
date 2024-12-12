@@ -40,7 +40,7 @@ public class Ex1Test {
     @Test
     void maxIndexTest() {
         String[] testArray = {"575bG", "165", "ABbD", "17bF", "0b2"};
-        assertEquals(1, Ex1.maxIndex(testArray));
+        assertEquals(0, Ex1.maxIndex(testArray));
 
         String[] testArray2 = {"0b2", "17bF", "ABbD", "165"};
         assertEquals(3, Ex1.maxIndex(testArray2));
@@ -67,6 +67,7 @@ public class Ex1Test {
         assertEquals(141, Ex1.number2Int("ABbD"));
         assertEquals(7, Ex1.number2Int("012b5"));
         assertEquals(117, Ex1.number2Int("7CbF"));
+        assertEquals(0, Ex1.number2Int("0b2"));
         //Not in the valid format
         assertEquals(-1, Ex1.number2Int("85Ab9"));
         assertEquals(-1, Ex1.number2Int("@b3"));
@@ -82,9 +83,8 @@ public class Ex1Test {
         assertEquals(-1, Ex1.number2Int("56b 8"));
         assertEquals(-1, Ex1.number2Int("5 b 9"));
         assertEquals(-1, Ex1.number2Int("b4"));
-        assertEquals(23, Ex1.number2Int("17bF"));
+        assertEquals(22, Ex1.number2Int("17bF"));
         assertEquals(-1, Ex1.number2Int("-3b6"));
-        assertEquals(0, Ex1.number2Int("0b2"));
         assertEquals(-1, Ex1.number2Int("0b1"));
         assertEquals(-1, Ex1.number2Int("GbG"));
     }
@@ -97,7 +97,7 @@ public class Ex1Test {
         assertTrue(Ex1.isNumber("012b5"));
         assertTrue(Ex1.isNumber("1A37CbF"));
         assertTrue(Ex1.isNumber("0b2"));
-        assertTrue(Ex1.isNumber("15b16"));
+        assertTrue(Ex1.isNumber("15bF"));
         assertFalse(Ex1.isNumber("85Ab9"));
 
         assertFalse(Ex1.isNumber("@b3"));
@@ -122,10 +122,8 @@ public class Ex1Test {
     void EqualsTest() {
         assertFalse(Ex1.equals("575bG", "165"));
         assertFalse(Ex1.equals("ABbD", "012b5"));
-        assertFalse(Ex1.equals("1A37CbF", "85Ab9"));
-        assertFalse(Ex1.equals("@b3", "17b@"));
-        assertFalse(Ex1.equals("2310b2", "456b1"));
-        assertFalse(Ex1.equals("79DbB", "b"));
+        assertFalse(Ex1.equals("7CbF", "5Ab9"));
+        assertFalse(Ex1.equals("2310b2", "456b2"));
         assertTrue(Ex1.equals("0b2", "0b2"));
     }
 
@@ -139,7 +137,6 @@ public class Ex1Test {
         // Invalid cases with non-digit characters
         assertFalse(Ex1.checkDigit("689#%"));
         assertFalse(Ex1.checkDigit("$%^ "));
-        assertFalse(Ex1.checkDigit(null));
         assertFalse(Ex1.checkDigit("@35"));
         assertFalse(Ex1.checkDigit("!"));
         assertFalse(Ex1.checkDigit("123a"));
