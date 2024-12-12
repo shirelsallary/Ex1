@@ -88,6 +88,7 @@ public class Ex1Test {
         assertEquals(-1, Ex1.number2Int("0b1"));
         assertEquals(-1, Ex1.number2Int("GbG"));
     }
+
     @Test
     void isNumberTest()
     {

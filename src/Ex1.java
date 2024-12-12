@@ -106,10 +106,9 @@ public class Ex1 {
      */
     public static String int2Number(int num, int base) {
         String Convert = "";
-        if((base>=2)&&(base<=16)){
-            if((num>0))
-            {
-                while (num >= 0)  //The loop create the num in the given base
+        if((num>=0)&&(base>1)&&(base<17)){
+
+                while (num >0)  //The loop create the num in the given base
                 {
                     if (base > 9)
                     {
@@ -148,8 +147,6 @@ public class Ex1 {
                     Convert = (numSwitch(String.valueOf(num % base))) + Convert;
                     num = num / base;
                 }
-            }
-            else Convert = "0";
             String b2= String.valueOf(base);
             if (base>9)
             {
@@ -161,12 +158,12 @@ public class Ex1 {
                 else if(base==15) b2 = "F";
                 else if(base==16) b2 = "G";
             }
-
+            if (Convert.equals("")) Convert = "0";
             return Convert+"b"+b2;
         }
-
         return Convert;
     }
+
     /**
      * Checks if the two numbers have the same value.
      *
